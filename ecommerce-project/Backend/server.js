@@ -21,8 +21,15 @@ app.use("/api/product",productRouter);
 app.use("/api/cart",cartRouter);
 app.use('/api/order',orderRouter);
 
+// SPA fallback
+app.get('*', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'dist', 'index.html'));
+})
+
 app.get("/", (req, res) => {
   res.send("API Working");
 });
+
+
 
 app.listen(port, () => console.log("Server is started on PORT:" + port));
